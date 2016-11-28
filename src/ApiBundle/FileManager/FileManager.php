@@ -7,11 +7,6 @@ use ApiBundle\Model\Order;
 class FileManager
 {
     /**
-     * Order file identifier.
-     */
-    const ORDER_FILE = 1;
-
-    /**
      * @var string Directory base URI
      */
     protected $baseUri;

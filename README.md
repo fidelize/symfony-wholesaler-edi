@@ -1,6 +1,8 @@
 edi-wholesaler
 ==============
 
+[![Build Status](https://travis-ci.org/merorafael/edi-wholesaler.svg?branch=master)](https://travis-ci.org/merorafael/edi-wholesaler)
+
 Requirements
 ------------
 
