@@ -12,11 +12,8 @@ Requirements
 Install
 -------
 
-1. Create a private key and a public key using the commands: `openssl genrsa -out var/jwt/private.pem -aes256 4096` and 
-`openssl rsa -pubout -in var/jwt/private.pem -out var/jwt/public.pem`;
-2. Install the dependencies using the `composer install` command;
-3. In the `jwt_key_pass_phrase` parameter, enter de security phrase created with the key;
-4. Assigns write permission to the `var/logs` and `var/cache` directories.
+1. Install the dependencies using the `composer install` command;
+2. Assigns write permission to the `var/logs` and `var/cache` directories.
 
 JWT Authentication
 ------------------
