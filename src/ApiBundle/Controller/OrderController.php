@@ -19,7 +19,6 @@ class OrderController extends Controller
     {
         $orderData = $request->request->get('order');
         $order = (new Order())
-            ->setId($request->request->get('id'))
             ->setProjectCode($orderData['project_code'])
             ->setPosCode($orderData['pos_code'])
             ->setEmail($orderData['email'])
@@ -37,6 +36,12 @@ class OrderController extends Controller
                 ->setNetPrice($item['net_price']);
             $order->addItem($item);
         }
+        $orderFile = $this->get('api.file_manager')->createOrderFile(
+            $request->request->get('id'),
+            $request->request->get('industry'),
+            $request->request->get('wholesaler'),
+            $order
+        );
 
         return new JsonResponse(null, 201);
     }

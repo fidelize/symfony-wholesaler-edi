@@ -7,11 +7,6 @@ use ApiBundle\Model\Order\Item;
 class Order
 {
     /**
-     * @var int Order identifier
-     */
-    protected $id;
-
-    /**
      * @var string Project code
      */
     protected $projectCode;
@@ -59,29 +54,6 @@ class Order
     public function __construct()
     {
         $this->itens = [];
-    }
-
-    /**
-     * Return order identifier.
-     *
-     * @return int Order identifier
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * Define order identifier.
-     *
-     * @param int $id Order identifier
-     *
-     * @return Order
-     */
-    public function setId(int $id): Order
-    {
-        $this->id = $id;
-        return $this;
     }
 
     /**

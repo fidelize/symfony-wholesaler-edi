@@ -1,4 +1,8 @@
 services:
+    api.file_manager:
+        class: ApiBundle\FileManager\FileManager
+        arguments: ['%edi_home%', '%edi_prefix%', '%edi_order_dir%']
+
     api.json_request_listener:
         class: ApiBundle\EventListener\JsonRequestListener
         tags:
