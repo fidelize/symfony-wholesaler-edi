@@ -2,6 +2,7 @@ edi-wholesaler
 ==============
 
 [![Build Status](https://travis-ci.org/merorafael/edi-wholesaler.svg?branch=master)](https://travis-ci.org/merorafael/edi-wholesaler)
+[![Coverage Status](https://coveralls.io/repos/github/merorafael/edi-wholesaler/badge.svg?branch=master)](https://coveralls.io/github/merorafael/edi-wholesaler?branch=master)
 
 Requirements
 ------------

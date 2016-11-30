@@ -1,5 +1,6 @@
 {
     "name": "merorafael/edi-wholesaler",
+    "description": "API RESTful to generate/list/read EDI wholesaler files",
     "license": "MIT",
     "type": "project",
     "autoload": {

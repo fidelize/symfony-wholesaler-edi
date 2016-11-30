@@ -20,4 +20,4 @@ parameters:
     jwt_token_ttl:        3600
 
     # A secret key that's used to generate certain security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            cdbe792443a712366f3ed9d15def30aec0caccfd
