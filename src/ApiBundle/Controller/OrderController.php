@@ -36,11 +36,11 @@ class OrderController extends Controller
                 ->setNetPrice($item['net_price']);
             $order->addItem($item);
         }
-        $orderFile = $this->get('api.file_manager')->createOrderFile(
+        $this->get('api.file_manager')->createOrderFile(
+            $order,
             $request->request->get('id'),
             $request->request->get('industry'),
-            $request->request->get('wholesaler'),
-            $order
+            $request->request->get('wholesaler')
         );
 
         return new JsonResponse(null, 201);

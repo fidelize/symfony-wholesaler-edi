@@ -20,17 +20,16 @@ class ItemTest extends TestCase
     public function testDataManipulation()
     {
         $this->item
-            ->setEan('78900000001')
+            ->setEan('7890000000001')
             ->setAmount(1)
             ->setMonitored(false)
             ->setDiscount(10.5)
             ->setNetPrice(12.50);
 
-        $this->assertEquals('78900000001', $this->item->getEan());
+        $this->assertEquals('7890000000001', $this->item->getEan());
         $this->assertEquals(1, $this->item->getAmount());
         $this->assertEquals(false, $this->item->isMonitored());
         $this->assertEquals(10.5, $this->item->getDiscount());
         $this->assertEquals(12.50, $this->item->getNetPrice());
     }
-
 }

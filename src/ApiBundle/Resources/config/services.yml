@@ -1,7 +1,11 @@
 services:
+    api.directory_builder:
+        class: ApiBundle\FileManager\DirectoryBuilder
+        arguments: ['%edi_baseuri%', '%edi_dir%', '%edi_orderdir%']
+
     api.file_manager:
         class: ApiBundle\FileManager\FileManager
-        arguments: ['%edi_home%', '%edi_prefix%', '%edi_order_dir%']
+        arguments: ['@api.directory_builder']
 
     api.json_request_listener:
         class: ApiBundle\EventListener\JsonRequestListener

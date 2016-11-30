@@ -9,9 +9,9 @@ parameters:
     mailer_password:   ~
 
     # EDI parameters
-    edi_home:          %kernel.root_dir%/../var
-    edi_prefix:        edi/
-    edi_order_dir:     pedidos/
+    edi_baseuri:          %kernel.root_dir%/../var
+    edi_dir:              edi/
+    edi_orderdir:         pedidos/
 
     # JWT parameters
     jwt_private_key_path: %kernel.root_dir%/../var/jwt/private.pem   # ssh private key path

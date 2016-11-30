@@ -7,46 +7,18 @@ use ApiBundle\Model\Order;
 class FileManager
 {
     /**
-     * @var string Directory base URI
+     * @var DirectoryBuilder Directory builder object
      */
-    protected $baseUri;
+    protected $directoryBuilder;
 
     /**
-     * @var string Prefix
-     */
-    protected $prefix;
-
-    /**
-     * @var string File directory
-     */
-    protected $directory;
-
-    public function __construct(string $baseUri, string $prefix, string $directory)
-    {
-        $this->baseUri = !empty($baseUri)
-            ? $baseUri
-            : __DIR__;
-        $this->prefix = $prefix;
-        $this->directory = $directory;
-    }
-
-    /**
-     * Build the order directory address.
+     * FileManager constructor.
      *
-     * @param string $industry   Industry identifier
-     * @param string $wholesaler Wholesaler identifier
-     *
-     * @return string Order directory address
+     * @param DirectoryBuilder $directoryBuilder
      */
-    public function buildDirectory(string $industry, string $wholesaler)
+    public function __construct(DirectoryBuilder $directoryBuilder)
     {
-        return implode(DIRECTORY_SEPARATOR, [
-            $this->baseUri,
-            $industry,
-            $this->prefix,
-            $wholesaler,
-            $this->directory,
-        ]);
+        $this->directoryBuilder = $directoryBuilder;
     }
 
     /**
@@ -57,19 +29,17 @@ class FileManager
      * @param string $wholesaler Wholesaler identifier
      * @param Order  $order      Order object data
      *
-     * @return \SplFileObject Order file
+     * @return OrderFile Order file
      */
-    public function createOrderFile(int $id, string $industry, string $wholesaler, Order $order)
+    public function buildOrderFile(int $id, string $industry, string $wholesaler, Order $order)
     {
-        $orderFile = new OrderFile($id, $order);
-        $directory = $this->buildDirectory($industry, $wholesaler);
-        if (!file_exists($directory)) {
-            mkdir($directory, '0777', true);
-        }
-        $filename = $orderFile->buildFilename();
-        $file = new \SplFileObject($directory.DIRECTORY_SEPARATOR.$filename, 'w+');
-        $orderFile->save($file);
+        $directory = $this->directoryBuilder
+            ->setIndustry($industry)
+            ->setWholesaler($wholesaler)
+            ->getDirectoryAddress();
+        $orderFile = new OrderFile($id, $directory, $order);
+        $orderFile->save();
 
-        return $file;
+        return $orderFile;
     }
 }
