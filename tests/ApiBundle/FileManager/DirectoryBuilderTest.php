@@ -39,10 +39,6 @@ class DirectoryBuilderTest extends TestCase
 
     public function testDirectoryManipulation()
     {
-        if (file_exists(__DIR__.'/../../../var/edi/gsk/edi//santacruz/pedidos/')) {
-            rmdir(__DIR__.'/../../../var/edi/gsk/edi//santacruz/pedidos/');
-        }
-
         $directory = $this->directoryBuilder
             ->setIndustry('gsk')
             ->setWholesaler('santacruz')
@@ -52,6 +48,13 @@ class DirectoryBuilderTest extends TestCase
             '/gsk/edi//santacruz/pedidos/',
             $directory
         );
+
+        rmdir($directory);
+
+        $directory = $this->directoryBuilder
+            ->setIndustry('gsk')
+            ->setWholesaler('santacruz')
+            ->getDirectoryAddress();
 
         $this->assertTrue(file_exists($directory));
     }

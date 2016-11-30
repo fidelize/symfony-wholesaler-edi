@@ -5,33 +5,23 @@ namespace ApiBundle\FileManager;
 abstract class AbstractFile
 {
     /**
-     * @var \SplFileObject File object
+     * @var string File path
      */
-    protected $file;
+    protected $filePath;
 
-    public function __construct(string $directory)
+    public function __construct(string $filePath)
     {
-        $this->setFile(new \SplFileObject($directory.DIRECTORY_SEPARATOR.$this->createFilename(), 'w'));
+        $this->filePath = $filePath;
     }
 
     /**
-     * Return file object.
+     * Return file path.
      *
-     * @return \SplFileObject File object
+     * @return string File path
      */
-    public function getFile(): \SplFileObject
+    public function getFilePath(): string
     {
-        return $this->file;
-    }
-
-    /**
-     * Define file object.
-     *
-     * @param \SplFileObject $file File object
-     */
-    public function setFile(\SplFileObject $file)
-    {
-        $this->file = $file;
+        return $this->filePath;
     }
 
     /**
@@ -42,7 +32,19 @@ abstract class AbstractFile
     abstract protected function createFilename(): string;
 
     /**
+     * Create a file object.
+     *
+     * @return \SplFileObject File object
+     */
+    protected function createFileObject()
+    {
+        return new \SplFileObject($this->filePath.DIRECTORY_SEPARATOR.$this->createFilename(), 'w');
+    }
+
+    /**
      * Write order content in order file.
+     *
+     * @return \SplFileObject File object
      */
     abstract public function save();
 }

@@ -4,6 +4,7 @@ namespace ApiBundle\Tests\FileManager;
 
 use ApiBundle\FileManager\DirectoryBuilder;
 use ApiBundle\FileManager\FileManager;
+use ApiBundle\FileManager\OrderFile;
 use ApiBundle\Model\Order;
 use PHPUnit\Framework\TestCase;
 
@@ -40,10 +41,6 @@ class FileManagerTest extends TestCase
                 ->setNetPrice(12.50));
 
         $orderFile = $this->fileManager->buildOrderFile(12345, 'gsk', 'santacruz', $order);
-        $orderFile->save();
-        $file = $orderFile->getFile();
-        $filename = $file->getPath().DIRECTORY_SEPARATOR.$file->getFilename();
-        $this->assertTrue(file_exists($filename));
-        unlink($filename);
+        $this->assertTrue($orderFile instanceof OrderFile);
     }
 }

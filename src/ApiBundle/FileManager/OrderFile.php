@@ -17,22 +17,17 @@ class OrderFile extends AbstractFile
     protected $order;
 
     /**
-     * @var \SplFileObject File object
-     */
-    protected $file;
-
-    /**
      * OrderFile constructor.
      *
-     * @param int    $id        Order identifier
-     * @param string $directory Directory address
-     * @param Order  $order     Order object
+     * @param int    $id       Order identifier
+     * @param string $filePath Directory address
+     * @param Order  $order    Order object
      */
-    public function __construct(int $id, string $directory, Order $order)
+    public function __construct(int $id, string $filePath, Order $order)
     {
         $this->id = $id;
         $this->order = $order;
-        parent::__construct($directory);
+        parent::__construct($filePath);
     }
 
     /**
@@ -126,7 +121,8 @@ class OrderFile extends AbstractFile
      */
     public function save()
     {
-        $this->file->fwrite($this->writeHeader(
+        $file = $this->createFileObject();
+        $file->fwrite($this->writeHeader(
             $this->order->getPosCode(),
             $this->order->getEmail(),
             $this->order->getWholesalerCode(),
@@ -138,15 +134,15 @@ class OrderFile extends AbstractFile
         ));
         /** @var Order\Item $item */
         foreach ($this->order->getItens() as $item) {
-            $this->file->fwrite($this->writeProduct(
+            $file->fwrite($this->writeProduct(
                 $item->getEan(),
                 $item->getAmount(),
                 $item->getDiscount(),
                 $item->getNetPrice()
             ));
         }
-        $this->file->fwrite($this->writeFooter(count($this->order->getItens())));
+        $file->fwrite($this->writeFooter(count($this->order->getItens())));
 
-        return;
+        return $file;
     }
 }

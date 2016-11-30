@@ -33,13 +33,11 @@ class FileManager
      */
     public function buildOrderFile(int $id, string $industry, string $wholesaler, Order $order)
     {
-        $directory = $this->directoryBuilder
+        $filePath = $this->directoryBuilder
             ->setIndustry($industry)
             ->setWholesaler($wholesaler)
             ->getDirectoryAddress();
-        $orderFile = new OrderFile($id, $directory, $order);
-        $orderFile->save();
 
-        return $orderFile;
+        return new OrderFile($id, $filePath, $order);
     }
 }
