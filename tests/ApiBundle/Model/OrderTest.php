@@ -47,5 +47,7 @@ class OrderTest extends TestCase
         $this->assertEquals(1, count($this->order->getItens()));
         $this->order->removeItem($orderItem);
         $this->assertEquals(0, count($this->order->getItens()));
+        $this->order->setItens([$orderItem]);
+        $this->assertEquals(1, count($this->order->getItens()));
     }
 }
