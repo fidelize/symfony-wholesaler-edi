@@ -21,7 +21,7 @@ class FileManager
      */
     protected $directory;
 
-    public function __construct($baseUri, $prefix, $directory)
+    public function __construct(string $baseUri, string $prefix, string $directory)
     {
         $this->baseUri = !empty($baseUri)
             ? $baseUri

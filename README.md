@@ -6,7 +6,7 @@ edi-wholesaler
 Requirements
 ------------
 
-- PHP 5.6 or above
+- PHP 7.0 or above
 - openssl
 
 Install

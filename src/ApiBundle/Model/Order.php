@@ -282,7 +282,7 @@ class Order
     public function removeItem(Item $item)
     {
         $key = array_search($item, $this->itens, true);
-        if ($key === false) {
+        if ($key !== false) {
             unset($this->itens[$key]);
         }
 
