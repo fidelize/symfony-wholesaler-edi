@@ -49,13 +49,6 @@ class DirectoryBuilderTest extends TestCase
             $directory
         );
 
-        rmdir($directory);
-
-        $directory = $this->directoryBuilder
-            ->setIndustry('gsk')
-            ->setWholesaler('santacruz')
-            ->getDirectoryAddress();
-
         $this->assertTrue(file_exists($directory));
     }
 
